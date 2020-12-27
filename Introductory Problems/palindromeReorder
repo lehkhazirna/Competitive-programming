@@ -1,22 +1,23 @@
 #include <string>
 #include <iostream>
-#include <map>
+#include <unordered_map>
 #include <iterator>
 #include <vector>
 typedef long long ll;
 using namespace std;
-//
-//He solution hian time limit exceeded a tih vangin siamthat angai.
-//
+
 int main()
 {
-    map<char, ll> table; // collect characters and count in a map 
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    unordered_map<char, ll> table; // collect characters and count in a map 
     string input_str;
     ll count = 0;         // for checking the number of characters with odd count
-    vector<char> back;
-    char ch,mid;
-   
-    map<char, ll>::iterator it;
+    string back="";
+    char ch, mid;
+
+    unordered_map<char, ll>::iterator it;
 
     getline(cin, input_str);
 
@@ -27,49 +28,45 @@ int main()
 
 
     for (it = table.begin(); it != table.end(); ++it)
+    {
+        if ((it->second) % 2 != 0)
         {
-            if ((it->second) % 2 != 0) 
-                {   mid=it->first;
-                    count++;
-                    
-                }
+            mid = it->first;
+            count++;
+
         }
-   
-   
-    if (count > 1) { 
+    }
+
+
+    if (count > 1) {
         cout << "NO SOLUTION\n";
         return 0;
     }
 
     //print first part 
-    
-    for(it = table.begin(); it != table.end(); ++it){
-       
-        if(it->second%2==0){
-          
-            for(ll i=1; (i <= it->second/2);i++)
-                {
-                    cout<<it->first;
-                    auto it2 = back.insert(back.begin(), it->first);
-                    
-                }
+
+    for (it = table.begin(); it != table.end(); ++it) {
+
+        if (it->second % 2 == 0) {
+            string s(it->second / 2, it->first);
+            cout << s;
+            back=s+back;
+            
         }
-        
-        
+
+
     }
-        
-    if(mid){
-        auto it2=table.find(mid);
-        for(ll i=1;i<=it2->second;i++)
-            cout<<mid;
-        
-        
+
+    if (mid) {
+        auto it2 = table.find(mid);
+        for (ll i = 1; i <= it2->second; i++)
+            cout << mid;
+
+
     }
-      
-    
-    //print the backside of the vector
-     for (auto it = back.begin(); it != back.end(); ++it) 
-        cout << *it ; 
+
+
+      cout << back;
 
     return 0;
 }
