@@ -5,7 +5,9 @@
 #include <vector>
 typedef long long ll;
 using namespace std;
-
+//
+//He solution hian time limit exceeded a tih vangin siamthat angai.
+//
 int main()
 {
     map<char, ll> table; // collect characters and count in a map 
