@@ -1,0 +1,73 @@
+#include <string>
+#include <iostream>
+#include <map>
+#include <iterator>
+#include <vector>
+typedef long long ll;
+using namespace std;
+
+int main()
+{
+    map<char, ll> table; // collect characters and count in a map 
+    string input_str;
+    ll count = 0;         // for checking the number of characters with odd count
+    vector<char> back;
+    char ch,mid;
+   
+    map<char, ll>::iterator it;
+
+    getline(cin, input_str);
+
+    for (ll i = 0; i < input_str.length(); i++) {
+        ch = input_str[i];
+        table[ch] += 1;
+    }
+
+
+    for (it = table.begin(); it != table.end(); ++it)
+        {
+            if ((it->second) % 2 != 0) 
+                {   mid=it->first;
+                    count++;
+                    
+                }
+        }
+   
+   
+    if (count > 1) { 
+        cout << "NO SOLUTION\n";
+        return 0;
+    }
+
+    //print first part 
+    
+    for(it = table.begin(); it != table.end(); ++it){
+       
+        if(it->second%2==0){
+          
+            for(ll i=1; (i <= it->second/2);i++)
+                {
+                    cout<<it->first;
+                    auto it2 = back.insert(back.begin(), it->first);
+                    
+                }
+        }
+        
+        
+    }
+        
+    if(mid){
+        auto it2=table.find(mid);
+        for(ll i=1;i<=it2->second;i++)
+            cout<<mid;
+        
+        
+    }
+      
+    
+    //print the backside of the vector
+     for (auto it = back.begin(); it != back.end(); ++it) 
+        cout << *it ; 
+
+    return 0;
+}
